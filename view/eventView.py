@@ -10,9 +10,13 @@ class eventView():
     def __init__(self):
         pass
 
-    def show_events(self):
+    def show_events(self, date):
         """Display all the events from database to the screen"""
-        pass
+        events = self.model.get_events(date)
+        print("\nVotre agenda du {}\n".format(date))
+        for event in events:
+            print(event)
+        input("Taper sur une touche pour continuer")
 
     def new_event(self):
         """Displays inputs to register a new event in the database"""

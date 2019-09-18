@@ -45,7 +45,8 @@ while action != 'q':
             currentMonth = 12
             currentYear -= 1
     elif action == "v":
-        view.show_events()
+        date = input("Vous souhaitez voir votre agenda pour quelle journée ? : ")
+        view.show_events(date)
     elif action == "n":
         view.new_event()
 

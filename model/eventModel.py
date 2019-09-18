@@ -9,8 +9,17 @@ class eventModel():
         # Create a instance of the connection class to acces the database
         self.db = Connection()
 
-    def get_events(self):
-        pass
+    def get_events(self, date):
+        sql = """select event_id, title, description, event_time from event
+                 where event_date = %s
+                 order by event_time"""
+        self.db.initialize_connection()
+        self.db.cursor.execute(sql, (date,))
+        events = self.db.cursor.fetchall()
+        self.db.close_connection()
+        for key, value in enumerate(events):
+            events[key] = Event(value)
+        return events
 
     def add_event(self, event):
         sql = """insert into event(title, description, event_date, event_time)
