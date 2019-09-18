@@ -42,5 +42,11 @@ class eventView():
         hour = input("Heure de l'événement : ")
         event = self.model.get_single_event(date, hour)
         print("Voici les informations enregistrées")
-        print(event)
-        input("Taper sur une touche pour continuer")
+        while True:
+            print(event)
+            print("Tapez s pour arrêter")
+            attribut = input("Attribut à modifier : ")
+            if attribut == 's' : break
+            value = input("Nouvelle valeur : ")
+            setattr(event, attribut, value)
+        self.model.update_event(event)
