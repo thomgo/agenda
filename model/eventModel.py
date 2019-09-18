@@ -21,6 +21,16 @@ class eventModel():
             events[key] = Event(value)
         return events
 
+    def get_single_event(self, date, hour):
+        sql = """select * from event
+                 where event_date = %s
+                 and event_time = %s"""
+        self.db.initialize_connection()
+        self.db.cursor.execute(sql, (date, hour))
+        event = self.db.cursor.fetchone()
+        self.db.close_connection()
+        return Event(event)
+
     def add_event(self, event):
         sql = """insert into event(title, description, event_date, event_time)
                  values(%s, %s, %s, %s)"""

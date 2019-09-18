@@ -29,7 +29,7 @@ while action != 'q':
     print("Nous sommes le : {}".format(datetime.today().strftime('%d %B %Y')))
     print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
     print (calendar.month(currentYear, currentMonth, 2, 1))
-    print("Que souhaitez vous gérer ? (v: voir, a: annuler, n: nouveau, s: suivant, p: précédent, q: quitter)")
+    print("Que souhaitez vous gérer ? (v: voir, a: annuler, n: nouveau, m: modifier, s: suivant, p: précédent, q: quitter)")
     action = input(": ")
     # call the right action function according to user input
     if action == "s":
@@ -45,12 +45,15 @@ while action != 'q':
             currentMonth = 12
             currentYear -= 1
     elif action == "v":
-        date = input("Vous souhaitez voir votre agenda pour quelle journée ? : ")
-        view.show_events(date)
+        view.show_events()
     elif action == "n":
         view.new_event()
     elif action == "a":
         view.delete_event()
+    elif action == "m":
+        view.update_event()
+    else:
+        pass
 
 # Leave the program
 print("Merci et au revoir")

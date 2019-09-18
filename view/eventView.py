@@ -10,8 +10,9 @@ class eventView():
     def __init__(self):
         pass
 
-    def show_events(self, date):
+    def show_events(self):
         """Display all the events from database to the screen"""
+        date = input("Vous souhaitez voir votre agenda pour quelle journée ? : ")
         events = self.model.get_events(date)
         print("\nVotre agenda du {}\n".format(date))
         if events:
@@ -35,3 +36,11 @@ class eventView():
         date = input("Jour de l'événement : ")
         hour = input("Heure de l'événement : ")
         self.model.delete_event(date, hour)
+
+    def update_event(self):
+        date = input("Jour de l'événement : ")
+        hour = input("Heure de l'événement : ")
+        event = self.model.get_single_event(date, hour)
+        print("Voici les informations enregistrées")
+        print(event)
+        input("Taper sur une touche pour continuer")
