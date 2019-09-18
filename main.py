@@ -28,7 +28,7 @@ while action != 'q':
     print("Nous sommes le : {}".format(datetime.today().strftime('%d %B %Y')))
     print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
     print (calendar.month(currentYear, currentMonth, 2, 1))
-    print("Que souhaitez vous gérez ? (s: suivant, p: précédent, q: quitter)")
+    print("Que souhaitez vous gérer ? (s: suivant, p: précédent, q: quitter)")
     action = input(": ")
     # call the right action function according to user input
     if action == "s":
