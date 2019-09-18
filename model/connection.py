@@ -8,7 +8,7 @@ class Connection():
     # In this case no host name and password because of my own configuration
     USER = "thomas"
     PORT = "5432"
-    DATABASE = "planning"
+    DATABASE = "agenda"
 
     def __init__(self):
         # The class stores an instance of pyscopg2 connection and cursor classes
@@ -18,9 +18,9 @@ class Connection():
     def initialize_connection(self):
         """Instanciate a connection and a cursor and store them in the related attributs"""
         try:
-            self.connection = psycopg2.connect(user = connection.USER,
-                                               port = connection.PORT,
-                                               database = connection.DATABASE)
+            self.connection = psycopg2.connect(user = Connection.USER,
+                                               port = Connection.PORT,
+                                               database = Connection.DATABASE)
             self.cursor = self.connection.cursor(cursor_factory=psycopg2.extras.DictCursor)
         except (Exception, psycopg2.Error) as error :
             print ("Error while connecting to PostgreSQL", error)

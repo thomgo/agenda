@@ -16,7 +16,12 @@ class eventView():
 
     def new_event(self):
         """Displays inputs to register a new event in the database"""
-        pass
+        event = Event()
+        event.title = input('Titre : ')
+        event.description = input('Description (optionnelle) : ')
+        event.event_date = input('Date (jj/mm/aaaa) : ')
+        event.event_time = input('Heure (hh:mm) : ')
+        self.model.add_event(event)
 
     def delete_event(self):
         """Display an input to delete a event from database by his ID"""
