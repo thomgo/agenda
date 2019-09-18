@@ -30,8 +30,15 @@ class eventModel():
         self.db.connection.commit()
         self.db.close_connection()
 
-    def delete_event(self, id):
-        pass
+    def delete_event(self, date, hour):
+        sql = """delete from event
+                 where event_date = %s
+                 and event_time = %s"""
+        arguments = (date, hour)
+        self.db.initialize_connection()
+        self.db.cursor.execute(sql, arguments)
+        self.db.connection.commit()
+        self.db.close_connection()
 
     def update_event(self, id):
         pass

@@ -18,5 +18,5 @@ class Event():
 
     def __str__(self):
         return """~~~~~~~~~~~~~~~~~~~~~~~~
-{} : {} (id:{})
-{}""".format(self.event_time, self.title, self.event_id, self.description)
+{} : {}
+{}""".format(self.event_time, self.title, self.description)
