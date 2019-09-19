@@ -26,19 +26,23 @@ action = ""
 while action != 'q':
     view = eventView()
     os.system('cls' if os.name == 'nt' else 'clear')
+    # Print the current date
     print("Nous sommes le : {}".format(datetime.today().strftime('%d %B %Y')))
     print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
+    # Print the current calendar
     print (calendar.month(currentYear, currentMonth, 2, 1))
     print("Que souhaitez vous gérer ? (v: voir, a: annuler, n: nouveau, m: modifier, s: suivant, p: précédent, q: quitter)")
     action = input(": ")
-    # call the right action function according to user input
+    # Call the right action function according to user input
     if action == "s":
+        # If we reach december then go back to january
         if currentMonth < 12:
             currentMonth += 1
         else:
             currentMonth = 1
             currentYear += 1
     elif action == "p":
+        # If we reach january then go bakc to december
         if currentMonth > 1:
             currentMonth -= 1
         else:
