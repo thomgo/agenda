@@ -43,7 +43,7 @@ class eventView():
 
     def update_event(self):
         """Allow user to change attribut's value for specific event"""
-        # Retrieve an event
+        # Retrieve an event if it exists
         choice = ""
         while choice != "s":
             date = input("Jour de l'événement : ")
