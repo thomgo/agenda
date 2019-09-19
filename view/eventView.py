@@ -44,22 +44,29 @@ class eventView():
     def update_event(self):
         """Allow user to change attribut's value for specific event"""
         # Retrieve an event
-        date = input("Jour de l'événement : ")
-        hour = input("Heure de l'événement : ")
-        event = self.model.get_single_event(date, hour)
-        print("Voici les informations enregistrées")
-        # User can change attributs as long as he wants
-        while True:
-            print(event)
-            print("Tapez s pour arrêter")
-            attribut = input("Attribut à modifier : ")
-            if attribut == 's' : break
-            value = input("Nouvelle valeur : ")
-            # If he chooses to change the hour then we check the hour is free
-            if attribut == "event_time":
-                while self.model.get_single_event(event.event_date, value):
-                    print("Vous avez déjà quelque chose à cette heure là !")
-                    value = input('Nouvelle heure : ')
-            # Set the new value and update the database
-            setattr(event, attribut, value)
-        self.model.update_event(event)
+        choice = ""
+        while choice != "s":
+            date = input("Jour de l'événement : ")
+            hour = input("Heure de l'événement : ")
+            event = self.model.get_single_event(date, hour)
+            if event : break
+            print("Nous ne trouvons rien à cette date")
+            choice = input("Tapez s pour arrêter, n'importe quelle touche pour continuer")
+        # If we have found an event
+        if event:
+            print("Voici les informations enregistrées")
+            # User can change attributs as long as he wants
+            while True:
+                print(event)
+                print("Tapez s pour arrêter")
+                attribut = input("Attribut à modifier : ")
+                if attribut == 's' : break
+                value = input("Nouvelle valeur : ")
+                # If he chooses to change the hour then we check the hour is free
+                if attribut == "event_time":
+                    while self.model.get_single_event(event.event_date, value):
+                        print("Vous avez déjà quelque chose à cette heure là !")
+                        value = input('Nouvelle heure : ')
+                # Set the new value and update the database
+                setattr(event, attribut, value)
+            self.model.update_event(event)
