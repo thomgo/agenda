@@ -30,32 +30,3 @@ class Connection():
         if(self.connection):
             self.cursor.close()
             self.connection.close()
-
-    def make_request(self, sql, arguments=False, message=False):
-        """General method to handle a sql request with arguments and an error message"""
-        try:
-            self.initialize_connection()
-            # execute the given sql query with arguments if there are
-            self.cursor.execute(sql, arguments)
-            # if the request is of type select we return a fetch with all results
-            if sql.lower().startswith("select", 0):
-                return self.cursor.fetchall()
-            # if it is not a select then we have to commit whatever happens
-            self.connection.commit()
-            # if the request is of type delete we have to know if something has been deleted
-            if sql.lower().startswith("delete", 0):
-                # if nothing has been deleted
-                if self.cursor.rowcount == 0:
-                    raise Exception("Nothing found")
-                return self.cursor.rowcount
-            # if the request was of type insert into and was a success then return True
-            return True
-        except Exception as e:
-            # If a specefic message has been given print it otherwise print the exception
-            if message:
-                print(message)
-            else:
-                print(e)
-            return False
-        finally:
-            self.close_connection()
