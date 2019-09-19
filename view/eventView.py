@@ -29,6 +29,9 @@ class eventView():
         event.description = input('Description (optionnelle) : ')
         event.event_date = input('Date (jj/mm/aaaa) : ')
         event.event_time = input('Heure (hh:mm) : ')
+        while self.model.get_single_event(event.event_date, event.event_time):
+            print("Vous avez déjà quelque chose à cette heure là !")
+            event.event_time = input('Nouvelle heure : ')
         self.model.add_event(event)
 
     def delete_event(self):
@@ -48,5 +51,9 @@ class eventView():
             attribut = input("Attribut à modifier : ")
             if attribut == 's' : break
             value = input("Nouvelle valeur : ")
+            if attribut == "event_time":
+                while self.model.get_single_event(event.event_date, value):
+                    print("Vous avez déjà quelque chose à cette heure là !")
+                    value = input('Nouvelle heure : ')
             setattr(event, attribut, value)
         self.model.update_event(event)

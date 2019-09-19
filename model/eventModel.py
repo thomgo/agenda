@@ -29,7 +29,9 @@ class eventModel():
         self.db.cursor.execute(sql, (date, hour))
         event = self.db.cursor.fetchone()
         self.db.close_connection()
-        return Event(event)
+        if event:
+            return Event(event)
+        return False
 
     def add_event(self, event):
         sql = """insert into event(title, description, event_date, event_time)
