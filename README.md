@@ -1,4 +1,4 @@
-# Application de gestion de conférence pour terminal en python orienté objet
+# Agenda pour terminal en python orienté objet
 
 Il s'agit d'une application développée dans le cadre de mon poste de formateur en programmation et plus particulièrement pour l'élaboration d'un programme d'apprentissage du python. L'objectif est que les apprenants produisent une application complète sans interface graphique intégrant une base de données PostgreSQL permettant de gérer un agenda simple avec des événements.
 
